@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:tage_boost/widgets/CustomBottomNavigationBar.dart';
+import 'package:tage_boost/widgets/utils/CustomBottomNavigationBar.dart';
 
 class MultiplicationGame extends StatefulWidget {
   const MultiplicationGame({Key? key}) : super(key: key);
@@ -99,11 +99,4 @@ class Multiplication extends StatelessWidget {
       bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: Multiplication(),
-    theme: ThemeData(primaryColor: Colors.blue),
-  ));
 }

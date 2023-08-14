@@ -5,11 +5,11 @@ import 'package:tage_boost/themes/global.dart';
 
 
 
-class CustomTextButton extends StatelessWidget {
+class CustomTextButtonSubCategory extends StatelessWidget {
   final int id;
   final String text;
 
-  CustomTextButton({required this.id, required this.text});
+  CustomTextButtonSubCategory({required this.id, required this.text});
 
   @override
   Widget build(BuildContext context) {

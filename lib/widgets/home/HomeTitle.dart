@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tage_boost/themes/global.dart';
 
 
 class HomeTitle extends StatelessWidget {

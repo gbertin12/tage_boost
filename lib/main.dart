@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tage_boost/widgets/CustomBottomNavigationBar.dart';
+import 'package:tage_boost/widgets/utils/CustomBottomNavigationBar.dart';
 import 'package:tage_boost/themes/global.dart';
-import 'package:tage_boost/widgets/home/BodyHome.dart';
+import 'package:tage_boost/screens/HomeScreen.dart';
 import 'package:tage_boost/provider/CategorieProvider.dart';
 /// Flutter code sample for [Scaffold].
 //
@@ -47,7 +47,7 @@ class _ScaffoldAppState extends State<ScaffoldApp> {
 
       body: Padding (
             padding: EdgeInsets.only(top: MediaQuery.of(context).size.height *0.03),
-            child : BodyHome(),
+            child : const BodyHome(),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(),
     );

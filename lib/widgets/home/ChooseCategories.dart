@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tage_boost/provider/CategorieProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:tage_boost/themes/global.dart';
+import 'package:tage_boost/themes/data/data.dart';
 
 class CustomButtonCategorie extends StatelessWidget {
     final int id;
@@ -17,11 +18,14 @@ class CustomButtonCategorie extends StatelessWidget {
             children: [
                 TextButton(
                     onPressed: () {
+                        if (id != categorieProvider.mainCategorie) {
+                            categorieProvider.setSubCategorie(0);
+                        }
                         categorieProvider.setMainCategorie(id);
-                        categorieProvider.setSubCategorie(0);
+                        
                     },
                     style: TextButton.styleFrom(
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         padding: EdgeInsets.all(padding),
                         backgroundColor: (categorieProvider.mainCategorie == id) ? MainCategorieColor :  MainCategorieColorLight,
                     ),
@@ -36,22 +40,18 @@ class CustomButtonCategorie extends StatelessWidget {
     }
 }
 
-
 class ChooseCategories extends StatelessWidget {
   ChooseCategories();
 
   @override
   Widget build(BuildContext context) {
 
-    final categorieProvider = Provider.of<CategorieProvider>(context);
-    double padding = MediaQuery.of(context).size.width * 0.05;
-
     return Row (
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-            CustomButtonCategorie(id: 0, text: "Calcul"),
-            CustomButtonCategorie(id: 1, text: "Logique"),
-            CustomButtonCategorie(id: 2, text: "Expression")       
-        ]);
+                for (Category mainCategorie in listMainCategories)
+                    CustomButtonCategorie(id: mainCategorie.id, text: mainCategorie.text),
+            ],
+        );
     }
 }
