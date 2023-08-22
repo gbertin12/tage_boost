@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tage_boost/widgets/utils/CustomBottomNavigationBar.dart';
+import 'package:tage_boost/widgets/CustomBottomNavigationBar.dart';
 import 'package:tage_boost/themes/global.dart';
 import 'package:tage_boost/screens/HomeScreen.dart';
 import 'package:tage_boost/provider/CategorieProvider.dart';

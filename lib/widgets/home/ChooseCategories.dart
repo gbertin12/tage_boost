@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tage_boost/provider/CategorieProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:tage_boost/themes/global.dart';
-import 'package:tage_boost/themes/data/data.dart';
+import 'package:tage_boost/data/data.dart';
 
 class CustomButtonCategorie extends StatelessWidget {
     final int id;

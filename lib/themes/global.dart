@@ -15,6 +15,9 @@ const TertiaryColorDark = const Color(0xFFc79a00);
 const Background = const Color(0xFFfffdf7);
 const TextColor = const Color(0xFFffffff);
 
-const calculIndex = 0;
-const logiqueIndex = 1;
-const expressionIndex = 2;
+const int _CALCUL_INDEX = 0;
+const int _LOGIQUE_INDEX = 1;
+const int _EXPRESSION_INDEX = 2;
+
+
+
