@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tage_boost/provider/CategorieProvider.dart';
 import 'package:tage_boost/widgets/home/ChooseCategories.dart';
-import 'package:tage_boost/widgets/home/HomeTitle.dart';
-import 'package:tage_boost/widgets/home/HorizontalScrollSubCategories.dart';
-import 'package:tage_boost/widgets/home/HorizontalScrollExercices.dart';
 
 class MakeBodyHome extends StatefulWidget {
   const MakeBodyHome({Key? key}) : super(key: key);
@@ -11,20 +10,16 @@ class MakeBodyHome extends StatefulWidget {
 }
 
 class _BodyHomeState extends State<MakeBodyHome> {
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: [
-                ChooseCategories(),
-                HorizontalScrollSubCategories(),
-                const HomeTitle(contentText: "Exercices"),
-                HorizontalScrollExercices(),
-                const HomeTitle(contentText: "Théorie"),
-            ]);
-    }
+    return Consumer<CategorieProvider>(
+      builder: (context, categorieProvider, _) {
+        return Container(
+            child: ChooseCategories(),
+        );
+      },
+    );
+  }
 }
 
 class BodyHome extends StatelessWidget {

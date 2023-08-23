@@ -95,10 +95,12 @@ class TemplateLogiqueGameState extends State<TemplateLogiqueGame> {
                     height: padding * 10,
                     child : _question,
                 ),
-                SizedBox(height: padding),
+                SizedBox(height: padding / 2),
                 // display possibilty
                 _possibilities,
-                SizedBox(height: padding),
+                SizedBox(height: padding * 2),
+                Container(child: _answer, height: padding * 2,),// show Response
+                SizedBox(height: padding * 7),
                 ElevatedButton(
                     onPressed: () {
                         if (_reset == false) { 
@@ -122,8 +124,6 @@ class TemplateLogiqueGameState extends State<TemplateLogiqueGame> {
                         )
                     )
                 ),
-                SizedBox(height: padding),
-                Container(child: _answer, height: padding * 2,)// show Response
             ],
         );
     }

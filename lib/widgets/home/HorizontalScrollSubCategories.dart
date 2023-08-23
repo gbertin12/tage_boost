@@ -67,7 +67,8 @@ class HorizontalScrollSubCategories extends StatelessWidget {
     final padding = MediaQuery.of(context).size.width * 0.05;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: padding),
+      padding: EdgeInsets.only(bottom: padding, top: padding),
+
       child: SingleChildScrollView( // Ajout du SingleChildScrollView ici
         scrollDirection: Axis.horizontal, // Définir la direction du défilement
         child: Row(

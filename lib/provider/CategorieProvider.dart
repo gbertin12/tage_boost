@@ -16,5 +16,4 @@ class CategorieProvider with ChangeNotifier {
         _subCategorie = value;
         notifyListeners();
     }
-
 }

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-List<int> algorythmeEcart()
+List<int> algorythmeEcartColonneDiagonale()
 {
     int constant = Random().nextInt(2);
     int alternate = Random().nextInt(4) == 0 ? 1 : 0;
@@ -42,8 +42,8 @@ List<int> algorythmeEcart()
         }
     } else {
         // non constant
-        int value = Random().nextInt(2) + 1;
-        int ecart = value;
+        int value = (Random().nextInt(6) == 0 ? 0 : 1);
+        int ecart = value + (Random().nextInt(4) == 0 ? 1 : 0);
         if (alternate == 0)
         {
             // non alterné

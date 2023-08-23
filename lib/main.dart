@@ -45,10 +45,7 @@ class _ScaffoldAppState extends State<ScaffoldApp> {
         title: const Text('TAGE Boost'),
       ),
 
-      body: Padding (
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height *0.03),
-            child : const BodyHome(),
-      ),
+      body: const BodyHome(),
       bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }

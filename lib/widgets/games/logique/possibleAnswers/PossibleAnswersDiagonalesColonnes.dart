@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:tage_boost/data/data.dart';
 import 'dart:math';
 import 'package:tage_boost/widgets/games/logique/utils/checker.dart';

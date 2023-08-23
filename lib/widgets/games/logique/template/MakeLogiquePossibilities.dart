@@ -8,7 +8,7 @@ Container makePossibleAnswers(List<String> options, int indexGoodAnswer, bool sh
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         for (int i = 0; i < length; i++)
-          Text(letterIndex[i] + ") " + options[i] + "    ",
+          Text(letterIndex[i] + ") " + options[i] + "   ",
             style: TextStyle(
               fontWeight: i == indexGoodAnswer && show ? FontWeight.bold : FontWeight.normal,
               color: i == indexGoodAnswer && show ? Colors.green : Colors.black,

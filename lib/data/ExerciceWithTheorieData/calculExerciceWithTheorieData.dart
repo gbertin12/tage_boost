@@ -23,7 +23,7 @@ List<ExerciceWithTheorie> listCalculExercicesWithTheorie = [
     ),
     ExerciceWithTheorie(
         id: 2, 
-        idSubCategory: calculMentalCategory, 
+        idSubCategory: problemesCategory, 
         text: "Multiplication de 1 à 20", 
         customWidgetExercice: const Multiplication(text: "Multiplication de 1 à 20", min: 1, max: 20), 
         customWidgetTheorie: Container()

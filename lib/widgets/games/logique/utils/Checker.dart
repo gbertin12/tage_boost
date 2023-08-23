@@ -21,14 +21,14 @@ int checkNumber(int num)
     return num;
 }
 
-int checkLetterOrNumber(int num, bool isNumber)
+int checkLetterOrNumber(int number, bool isNumber)
 {
     int max = isNumber ? 9 : 25;
-    if (num < 0) {
-        return (max + 1) + num;
+    if (number < 0) {
+        return (max + 1) + number;
     }
-    else if (num > max) {
-        return num - (max + 1);
+    else if (number > max) {
+        return number - (max + 1);
     }
-    return num;
+    return number;
 }
