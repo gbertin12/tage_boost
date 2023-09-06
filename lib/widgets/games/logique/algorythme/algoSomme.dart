@@ -29,7 +29,7 @@ List<int> chooseColumn(bool allColumn)
 }
 
 List<int>   algoIdentique(bool allColumn, List<int> column) {
-    List<int> algo = [0, 0, 0, 0, 0];
+    List<int> algo = [0, 0, 0, 0];
     for (int i = 0; i < column.length; i++) {
         algo.add(column[i]);
     }
@@ -39,7 +39,7 @@ List<int>   algoIdentique(bool allColumn, List<int> column) {
 List<int>  algoConstant(bool allColumn, List<int> column, int negatif) {
     List<int> algo = [];
     int value = Random().nextInt(5) + 1;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         algo.add(value * negatif);
     }
     for (int i = 0; i < column.length; i++) {
@@ -54,7 +54,7 @@ List<int>  algoProgressifRegressif(bool allColumn, List<int> column, int negatif
     int value = 1;
     int ecart = value + (Random().nextInt(8) == 0 ? 1 : 0);
     
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         algo.add(value * negatif);
         value += ecart;
     }
@@ -68,7 +68,7 @@ List<int>  algoProgressifRegressif(bool allColumn, List<int> column, int negatif
 }
 
 // renvoi une List<int> de 5 int + 2 ou 3 int pour les colonnes
-List<int> algoSomme()
+List<int> algoSomme(bool isNumber)
 {
     int algoType = Random().nextInt(4);
     bool allColumn = Random().nextInt(3) == 0 ? false : true;

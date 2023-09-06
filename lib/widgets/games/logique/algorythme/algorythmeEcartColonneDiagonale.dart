@@ -1,6 +1,6 @@
 import 'dart:math';
 
-List<int> algorythmeEcartColonneDiagonale()
+List<int> algorythmeEcartColonneDiagonale(bool isNumber)
 {
     int constant = Random().nextInt(2);
     int alternate = Random().nextInt(4) == 0 ? 1 : 0;
@@ -26,7 +26,12 @@ List<int> algorythmeEcartColonneDiagonale()
     {
         alternate = Random().nextInt(10) == 0 ? 1 : 0;
         // constant
-        int value = Random().nextInt(5) + 1;
+        int value = 0;
+        if (isNumber) {
+            value = Random().nextInt(3) + 1;
+        } else {
+            value = Random().nextInt(5) + 1;
+        }
         if (alternate == 0)
         {
             // non alterné
@@ -43,7 +48,12 @@ List<int> algorythmeEcartColonneDiagonale()
     } else {
         // non constant
         int value = (Random().nextInt(6) == 0 ? 0 : 1);
-        int ecart = value + (Random().nextInt(4) == 0 ? 1 : 0);
+        int ecart = 0;
+        if (isNumber) {
+            ecart = 1;
+        } else {
+            ecart = 1 + (Random().nextInt(4) == 0 ? 1 : 0);
+        }
         if (alternate == 0)
         {
             // non alterné
@@ -60,6 +70,5 @@ List<int> algorythmeEcartColonneDiagonale()
             }
         }
     }
-    print("current algo : $algo");
     return algo;
 }

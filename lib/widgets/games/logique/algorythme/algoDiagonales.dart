@@ -21,6 +21,24 @@ List<List<itemLogique>> algoLargeDiagonale(int diagonaleDirection, int originalC
         itemLogique(value: Random().nextInt(max), mark : originalColonne == 1 ? true : false),
         itemLogique(value: Random().nextInt(max), mark : originalColonne == 2 ? true : false),
     ];
+     if (isNumber) {
+        // additionné toutes les valeurs de algo
+        int somme = 0;
+        for (int i = 0; i < 4; i++) {
+            somme += algo[i];
+        }
+        if (somme == 12) {
+            row[originalColonne].value = Random().nextInt(3);
+        } else if (somme == -12) {
+            row[originalColonne].value = max - Random().nextInt(3);
+        } else if (somme == 10 || somme == -10) {
+            row[originalColonne].value = Random().nextInt(2);
+        } else if (somme < -9) {
+            row[originalColonne].value = max - Random().nextInt(max - somme.abs());
+        } else {
+            row[originalColonne].value = Random().nextInt(max - somme.abs());
+        }
+    }
     // ajout à la liste
     list.add(row);
 
@@ -67,6 +85,24 @@ List<List<itemLogique>> algoMediumDiagonale(int diagonaleDirection, int original
         itemLogique(value: Random().nextInt(max), mark : originalColonne == 1 ? true : false),
         itemLogique(value: Random().nextInt(max), mark : originalColonne == 2 ? true : false),
     ];
+    if (isNumber) {
+        // additionné toutes les valeurs de algo
+        int somme = 0;
+        for (int i = 0; i < 4; i++) {
+            somme += algo[i];
+        }
+        if (somme == 12) {
+            row[originalColonne].value = Random().nextInt(3);
+        } else if (somme == -12) {
+            row[originalColonne].value = max - Random().nextInt(3);
+        } else if (somme == 10 || somme == -10) {
+            row[originalColonne].value = Random().nextInt(2);
+        } else if (somme < -9) {
+            row[originalColonne].value = max - Random().nextInt(max - somme.abs());
+        } else {
+            row[originalColonne].value = Random().nextInt(max - somme.abs());
+        }
+    }
     // ajout à la liste
     list.add(row);
 
@@ -122,6 +158,24 @@ List<List<itemLogique>> algoSmallDiagonale(int diagonaleDirection, int originalC
         itemLogique(value: Random().nextInt(max), mark : originalColonne == 2 ? true : false),
     ];
     bool letterFound = false;
+     if (isNumber) {
+        // additionné toutes les valeurs de algo
+        int somme = 0;
+        for (int i = 0; i < 4; i++) {
+            somme += algo[i];
+        }
+        if (somme == 12) {
+            row[originalColonne].value = Random().nextInt(3);
+        } else if (somme == -12) {
+            row[originalColonne].value = max - Random().nextInt(3);
+        } else if (somme == 10 || somme == -10) {
+            row[originalColonne].value = Random().nextInt(2);
+        } else if (somme < -9) {
+            row[originalColonne].value = max - Random().nextInt(max - somme.abs());
+        } else {
+            row[originalColonne].value = Random().nextInt(max - somme.abs());
+        }
+    }
     // ajout à la liste
     list.add(row);
     for (int i = 1; i < 5; i++)

@@ -44,7 +44,7 @@ List<List<Category>> listSubCategories = [
     [
         // Logique
         Category(id: 0, text: "Lettres"),
-        Category(id: 1, text: "Chiffres")
+        Category(id: 1, text: "Chiffres"),
     ],
     [
         // Expression
@@ -56,7 +56,7 @@ List<List<Category>> listSubCategories = [
 List<Category> listMainCategories = [
     Category(id: 0, text: "Calcul"),
     Category(id: 1, text: "Logique"),
-    Category(id: 2, text: "Expression (à venir)")
+    //Category(id: 2, text: "Expression (à venir)")
 ];
 
 // liste des exercices selon la subCatégorie et la main Catégorie sélectionné

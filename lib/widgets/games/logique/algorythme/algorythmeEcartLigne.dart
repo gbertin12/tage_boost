@@ -1,6 +1,6 @@
 import 'dart:math';
 
-List<int> algorythmeEcartligne()
+List<int> algorythmeEcartligne(bool isNumber)
 {
     int constant = Random().nextInt(2);
     // int alternate = Random().nextInt(6) == 0 ? 1 : 0;
@@ -13,7 +13,13 @@ List<int> algorythmeEcartligne()
     if (constant == 0)
     {
         // constant
-        int value = Random().nextInt(5) + 1;
+        int value = 0;
+        // si c'est un nombre alors je génère un nombre entre 1 et 3
+        if (isNumber) {
+            value = Random().nextInt(3) + 1;
+        } else {
+            value = Random().nextInt(5) + 1;
+        }
         if (alternate == 0)
         {
             // non alterné
@@ -51,6 +57,7 @@ List<int> algorythmeEcartligne()
         }
     }
 
+    // choose 2 columns will be used
     int column1 = Random().nextInt(3);
     int column2 = Random().nextInt(3);
     if (column1 == column2) {
@@ -63,6 +70,5 @@ List<int> algorythmeEcartligne()
     }
     algo.add(column1);
     algo.add(column2);
-    print("current algo : $algo");
     return algo;
 }

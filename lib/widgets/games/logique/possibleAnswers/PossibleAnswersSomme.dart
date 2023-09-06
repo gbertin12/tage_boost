@@ -1,6 +1,8 @@
 import 'package:tage_boost/data/data.dart';
 import 'dart:math';
 
+import 'package:tage_boost/widgets/games/logique/utils/Checker.dart';
+
 String _ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String _NUMBERS = "0123456789";
 
@@ -20,6 +22,7 @@ int getSomme(List<itemLogique> row)
 
 List<String>    makeOptionAnswersSomme(List<itemLogique> row, int indexGoodAnswer, bool isNumber)
 {
+    print("makeOptionAnswersSomme");
     int                 max = isNumber ? 9 : 26;
     List<String>        list = [];
     int                 column1 = 0;
@@ -47,7 +50,7 @@ List<String>    makeOptionAnswersSomme(List<itemLogique> row, int indexGoodAnswe
             column3 = i;
         }
     }
-    
+
     // check if all column is used
     for (int i = 0; i < 3; i++)
     {
@@ -68,42 +71,38 @@ List<String>    makeOptionAnswersSomme(List<itemLogique> row, int indexGoodAnswe
             list.add(add);
             continue ;
         }
-        int valueColumn1 = 0;
-        int valueColumn2 = 0;
-        int valueColumn3 = 0;
-       // check si ce triple est égale à la bonne réponse
-        while (true) {
-            if (fullColumn) {   
+        int valueColumn1 = Random().nextInt(max);
+        int valueColumn2 = Random().nextInt(max);
+        int valueColumn3 = Random().nextInt(max);
+       
+        
+        if (fullColumn) {
+            // check si ce triple est égale à la bonne réponse
+            while (valueColumn1 + valueColumn2 + valueColumn3 == somme) {
                 valueColumn1 = Random().nextInt(max);
                 valueColumn2 = Random().nextInt(max);
                 valueColumn3 = Random().nextInt(max);
-                if (valueColumn1 + valueColumn2 + valueColumn3 != somme) {
-                    break ;
-                }
-            } else {
-                // check si ce double est égale à la bonne réponse
-                while (true) {
-                    valueColumn1 = Random().nextInt(max);
-                    valueColumn2 = Random().nextInt(max);
-                    if (valueColumn1 + valueColumn2 != somme) {
-                        break ;
-                    }
-                }
-                valueColumn3 = Random().nextInt(max);
+            }
+        } else {
+            // check si ce double est égale à la bonne réponse
+            while (valueColumn1 + valueColumn2 == somme) {
+                valueColumn1 = Random().nextInt(max);
+                valueColumn2 = Random().nextInt(max);
             }
         }
         // met les lettre à la bonne place
         add = "";
         List<int> column = [column1, column2, column3];
-        column[column1] = valueColumn1;
-        column[column2] = valueColumn2;
-        column[column3] = valueColumn3;
+        column[column1] = checkLetterOrNumber(valueColumn1, isNumber);
+        column[column2] = checkLetterOrNumber(valueColumn2, isNumber);
+        column[column3] = checkLetterOrNumber(valueColumn3, isNumber);
         add += isNumber ? _NUMBERS[column[0]] : _ALPHABET[column[0]];
         add += isNumber ? _NUMBERS[column[1]] : _ALPHABET[column[1]];
         add += isNumber ? _NUMBERS[column[2]] : _ALPHABET[column[2]];
 
         list.add(add);
     }
+    print('return list');
     return list;
 }
 

@@ -13,7 +13,7 @@ import 'package:tage_boost/widgets/CustomBottomNavigationBar.dart';
 
 typedef CreateContentPossibleAnswers    =  List<String>                Function(List<itemLogique> row, int indexGoodAnswerInPossibilities, bool isNumber);
 typedef CreateContentQuestion           =  List<List<itemLogique>>     Function(List<int> algo, bool isNumber);
-typedef Algorythme                      =  List<int>                   Function();
+typedef Algorythme                      =  List<int>                   Function(bool isNumber);
 typedef WidgetAnswer                    =  Widget                      Function(List<int> algo, double padding);
 
 class TemplateLogiqueGame extends StatefulWidget {
@@ -62,7 +62,7 @@ class TemplateLogiqueGameState extends State<TemplateLogiqueGame> {
             // Which row will be hide in the Question 
             _hideRow = Random().nextInt(5);
             // create algo for create the content of new Question
-            algo = widget.algo();
+            algo = widget.algo(widget.isNumber);
             // create the content of new Question
             rows = widget.createContentQuestion(algo, widget.isNumber);
             // create widget of new Question

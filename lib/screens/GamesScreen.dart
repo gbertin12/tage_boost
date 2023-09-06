@@ -32,7 +32,7 @@ class _GamesState extends State<MakeGames> {
             HorizontalScrollSubCategories(),
             const HomeTitle(contentText: "Exercices"),
             HorizontalScrollExercices(),
-            const HomeTitle(contentText: "Théorie (à venir)"),
+            const HomeTitle(contentText: "Cours (à venir)"),
           ],
         );
       },

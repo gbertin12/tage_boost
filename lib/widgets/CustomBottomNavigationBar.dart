@@ -14,16 +14,16 @@ class CustomBottomNavigationBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                icon: const Icon(Icons.shop),
-                color: PrimaryColor,
-                onPressed: () {
-                  Navigator.push(
-                		context,
-                    	MaterialPageRoute(builder: (context) => const ShopScreen()),
-                	);
-                },
-              ),
+            //   IconButton(
+            //     icon: const Icon(Icons.shop),
+            //     color: PrimaryColor,
+            //     onPressed: () {
+            //       Navigator.push(
+            //     		context,
+            //         	MaterialPageRoute(builder: (context) => const ShopScreen()),
+            //     	);
+            //     },
+            //   ),
               FloatingActionButton(
 				child: const Icon(Icons.home),
                 backgroundColor: PrimaryColor,
@@ -34,16 +34,16 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     ),
                 },
               ),
-              IconButton(
-                icon: const Icon(Icons.settings),
-                color: PrimaryColor,
-                onPressed: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SettingsScreen()),
-                    ),
-                },
-              ),
+            //   IconButton(
+            //     icon: const Icon(Icons.settings),
+            //     color: PrimaryColor,
+            //     onPressed: () => {
+            //         Navigator.push(
+            //             context,
+            //             MaterialPageRoute(builder: (context) => const SettingsScreen()),
+            //         ),
+            //     },
+            //   ),
             ],
         ),
         );

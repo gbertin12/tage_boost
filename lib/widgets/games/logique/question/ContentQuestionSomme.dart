@@ -1,8 +1,10 @@
 import 'dart:math';
+import 'package:flutter/services.dart';
 import 'package:tage_boost/data/data.dart';
+import 'package:tage_boost/widgets/games/logique/utils/Checker.dart';
 
 bool algoIsConstant(List<int> algo) {
-    for (int i = 1; i < 5; i++)
+    for (int i = 1; i < 4; i++)
     {
         int value1 = algo[i];
         int value2 = algo[i - 1];
@@ -20,29 +22,31 @@ bool algoIsConstant(List<int> algo) {
     return true;
 }
 
-int getMaxSomme(List<int> algo, bool isNumber) {
+int getMaxSomme(List<int> algo, bool fullColumn, bool isNumber) {
     int maxEcart = 0;
     int maxSomme = isNumber ? 10 : 26;
+    int ecart = 0;
 
-    if (algo[0] < 0) {
-        maxEcart = algo[0] * -1;
-    } else {
-        maxEcart = algo[0];
-    }
-    for (int i = 1; i < 5; i++)
+    for (int i = 0; i < 4; i++)
     {
-        if (algo[i] < 0) {
-            algo[i] = algo[i] * -1;
+        ecart = algo[i];
+        if (ecart < 0) {
+            ecart = ecart * -1;
         }
-        if (maxEcart < algo[i]) {
-            maxEcart = algo[i];
+        if (maxEcart < ecart) {
+            maxEcart = ecart;
         }
     }
-    return maxSomme - maxEcart;
+    if (fullColumn) {
+        maxSomme = maxSomme * 3;
+    } else {
+        maxSomme = maxSomme * 2;
+    } 
+    return maxSomme - maxEcart - 6;
 }
 
 bool isNegatifAlgorithm(List<int> algo) {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 4; i++)
     {
         if (algo[i] < 0) {
             return true;
@@ -51,25 +55,59 @@ bool isNegatifAlgorithm(List<int> algo) {
     return false;
 }
 
+int additionnelInt(int rest, bool fullColumn, int whichCol, int max)
+{
+    int ret = 0;
+    int nbRestCol =  0;
+    int minRetValue = 0;
+    // check combien il reste de column après
+    if (fullColumn) {
+        nbRestCol = 3 - whichCol;
+    } else {
+        nbRestCol = 2 - whichCol;
+    }
+    if (nbRestCol == 0) {
+        return rest;
+    }
+    if (nbRestCol == 1) {
+        if (rest > max) {
+            minRetValue = rest - max;
+            ret = minRetValue + Random().nextInt(max - minRetValue);
+        } else {
+            ret = Random().nextInt(rest);
+        }
+    } else {
+        if (rest > max * 2) {
+            minRetValue = rest - max * 2;
+            ret = minRetValue + Random().nextInt(max - minRetValue);
+        } else {
+            ret = Random().nextInt(rest);
+        }
+    }
+    return ret;
+}
+
 List<List<itemLogique>> contentQuestionSomme(List<int> algo, bool isNumber) {
     List<List<itemLogique>>     list = [];
     int                         max = isNumber ? 9 : 26;
     List<itemLogique> row = [];
 
-    int     column1      = algo[5];
-    int     column2      = algo[6];
+    // for (int i = 0; i < algo.length; i++)
+    // {
+    //     print("algo[$i] = ${algo[i]}");
+    // }
+
+    int     column1      = algo[4];
+    int     column2      = algo[5];
     int     column3      = 0;
     bool    fullColumn   = false;
     bool    isConstant   = algoIsConstant(algo);
-    int     startSomme   = Random().nextInt(getMaxSomme(algo, isNumber));
+    int     startSomme   = 0;
 
-    if (isNegatifAlgorithm(algo)) {
-        startSomme = max - startSomme;
-    }
     // si toutes les colonnes sont sélectionnées
     // sinon je trouve la derniere colonne
-    if (algo.length == 8) {
-        column3 = algo[7];
+    if (algo.length == 7) {
+        column3 = algo[6];
         fullColumn = true;
     } else {
          // found value of column3
@@ -82,44 +120,79 @@ List<List<itemLogique>> contentQuestionSomme(List<int> algo, bool isNumber) {
         } 
     }
 
+    startSomme =  6 + Random().nextInt(getMaxSomme(algo, fullColumn, isNumber));
+    if (isNegatifAlgorithm(algo)) {
+        if (fullColumn) {
+            startSomme = (max * 3) - startSomme;
+        } else {
+            startSomme = (max * 2) - startSomme;
+        }
+    }
+
     itemLogique valueColumn1 = itemLogique(value: 0, mark: false);
     itemLogique valueColumn2 = itemLogique(value: 0, mark: false);
     itemLogique valueColumn3 = itemLogique(value: 0, mark: false);
 
-    int somme = 0;
+    int somme = startSomme;
+
+    
     // si algo.lenght != 8 column 3 = column will be fill by random int
     for (int i = 0; i < 5; i++)
     { 
-        somme = startSomme + algo[i];
-        
+        valueColumn1.value = 0;
+        valueColumn2.value = 0;
+        valueColumn3.value = 0;
+        if (i > 0) {
+            somme += algo[i - 1];
+        }
+        //print("somme = $somme");
+        row = [
+            itemLogique(value: 0, mark: false),
+            itemLogique(value: 0, mark: false),
+            itemLogique(value: 0, mark: false),
+        ];
         // si on utilise les 3 columns
         if (fullColumn) 
         {
-            valueColumn1.value = Random().nextInt(max - 2);
-            valueColumn2.value = Random().nextInt(max - valueColumn1.value - 1);
-            valueColumn3.value = somme - valueColumn1.value - valueColumn2.value;
+            // check si la somme des 3 est bien égale à Somme
+            int rest = somme; 
+            valueColumn1.value = additionnelInt(rest, fullColumn, 1, max);
+            rest -= valueColumn1.value;
+            valueColumn2.value = additionnelInt(rest, fullColumn, 2, max);
+            rest -= valueColumn2.value;
+            valueColumn3.value = rest;
             // check si ce triple de valeur n'est pas déjà dans la liste
             if (isConstant) {
                 while (list.any((element) => element[column1].value == valueColumn1.value && element[column2].value == valueColumn2.value)) {
-                    valueColumn1.value = Random().nextInt(max - 2);
-                    valueColumn2.value = Random().nextInt(max - valueColumn1.value - 1);
-                    valueColumn3.value = somme - valueColumn1.value - valueColumn2.value;
+                    int rest = somme; 
+                    valueColumn1.value = additionnelInt(rest, fullColumn, 1, max);
+                    rest -= valueColumn1.value;
+                    valueColumn2.value = additionnelInt(rest, fullColumn, 2, max);
+                    rest -= valueColumn2.value;
+                    valueColumn3.value = rest;
                 }
             }
         } else {
-            valueColumn1.value = Random().nextInt(max - 1);
-            valueColumn2.value = somme - valueColumn1.value;
+                int rest = somme;
+                valueColumn3.value = Random().nextInt(max);
+                valueColumn1.value = additionnelInt(rest, fullColumn, 1, max);
+                rest -= valueColumn1.value;
+                valueColumn2.value = somme - valueColumn1.value;
             // check si cette paire de valeur n'est pas déjà dans la liste
             if (isConstant) {
                 while (list.any((element) => element[column1].value == valueColumn1.value)) {
-                    valueColumn1.value = Random().nextInt(max - 1);
+                    int rest = somme;
+                    valueColumn1.value = additionnelInt(rest, fullColumn, 1, max);
+                    rest -= valueColumn1.value;
                     valueColumn2.value = somme - valueColumn1.value;
                 }
             }
         }
-        row[column1] = itemLogique(value: valueColumn1.value, mark: valueColumn1.mark);
-        row[column2] = itemLogique(value: valueColumn2.value, mark: valueColumn2.mark);
-        row[column3] = itemLogique(value: valueColumn3.value, mark: valueColumn3.mark);
+
+        row[column1] = itemLogique(value: checkLetterOrNumber(valueColumn1.value, isNumber), mark: valueColumn1.mark);
+        row[column2] = itemLogique(value: checkLetterOrNumber(valueColumn2.value, isNumber), mark: valueColumn2.mark);
+        row[column3] = itemLogique(value: checkLetterOrNumber(valueColumn3.value, isNumber), mark: valueColumn3.mark);
+
         list.add(row);
     }
     return list;
